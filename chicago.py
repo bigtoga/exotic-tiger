@@ -18,7 +18,7 @@ MyAppToken = os.getenv("MyToken")
 
 crime_data = "ijzp-q8t2"
 client = Socrata("data.cityofchicago.org", MyAppToken)
-max_rows_to_return = 10
+max_rows_to_return = 100000
 
 # checking the day of the month and printing the result, this is used to filter the dataframe later
 today = date.today()
