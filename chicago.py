@@ -13,7 +13,7 @@ import sqlite3
 import os
 from dotenv import load_dotenv
 
-# # Retrieves config var from Heroku. Place in .env file if running locally
+# Retrieves config var from Heroku. Place in .env file if running locally
 MyAppToken = os.getenv("MyToken")
 
 crime_data = "ijzp-q8t2"
