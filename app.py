@@ -3,6 +3,7 @@ import chicago
 from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 
 # setting route to chicago database

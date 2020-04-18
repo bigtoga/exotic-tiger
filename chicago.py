@@ -5,7 +5,16 @@ import numpy as np
 from sodapy import Socrata
 import csv
 import sqlite3
-from api_keys import MyAppToken
+# from api_keys import MyAppToken
+
+# Heroku support
+# Create the .env file:
+# heroku config:get MyToken -s --app exotic-tiger >> .env
+import os
+from dotenv import load_dotenv
+
+# # Retrieves config var from Heroku. Place in .env file if running locally
+MyAppToken = os.getenv("MyToken")
 
 crime_data = "ijzp-q8t2"
 client = Socrata("data.cityofchicago.org", MyAppToken)
@@ -16,7 +25,7 @@ today = date.today()
 daynum = today.strftime("%d")
 month = today.strftime("%m")
 day = int(daynum) - 8
-print(f'      --- chicago.py: Day: {day} \nMonth: {month}')
+# print(f'      --- chicago.py: Most recent day/month: {month}-{day}')
 
 
 def getData():
@@ -31,7 +40,7 @@ def getData():
         
         print(f'                --- WHERE clause: {where_clause}')
         
-        print(f'                --- calling API now w limit of {max_rows_to_return} rows requested')
+        print(f'                --- calling API now w limit of {max_rows_to_return} rows requested with token {MyAppToken}')
         df = pd.DataFrame(
             client.get(
                 crime_data, 

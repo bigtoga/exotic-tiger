@@ -3,6 +3,7 @@ __pycache__/
 .vscode
 
 api_keys.py
+.env
 
 #Jupyter
 .ipynb_checkpoints
