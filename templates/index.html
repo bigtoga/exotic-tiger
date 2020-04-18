@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/df5e4000d3.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/static/css/zingstyle.css" />
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <title>Crime vs Corona Dashboard</title>
+</head>
+
+<body>
+  <!--Jumbotron from bootstrap-->
+  <div class="jumbotron text-center"
+    style="background-image: url(https://www.wcu.edu/WebGraphicsNew/Coronavirus-HeaderImage.jpg); background-size: 100%; height: 100%;">
+    <div class="container">
+      <h1 class="display-4">COVID-19's Impact on Chicago Crime</h1>
+      <a href="https://github.com/Austin-Potts/Chicago_data_analysis" target="_blank">
+        <p>TO DO - update this link! Github repository for this project</p>
+      </a>
+      <a class="btn btn-lg text-black" style="background-color:white ;" href="/updateData" role="button">Update Data</a>
+    </div>
+  </div>
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <!-- <img class="d-block w-100" src="https://cnet4.cbsistatic.com/img/SHf-mha0zOZYHE1hab7dKpUKQ9Y=/940x0/2020/03/31/7cdc930c-12f2-4360-9a6f-0c2cbf7a987f/screen-shot-2020-03-31-at-12-37-47-pm.png" alt="First slide"> -->
+        <div class="zc-body">
+          <div id="myChart" class="chart--container">
+            <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <!-- <img class="d-block w-100" src="https://akns-images.eonline.com/eol_images/Entire_Site/202031/rs_1024x759-200401152028-1024-dillon-passage-joe-exotic.jpg?fit=inside|900:auto&output-quality=90" alt="Second slide"> -->
+        <div class="zc-body">
+          <div id="yourChart" class="chart--container">
+            <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100"
+          src="https://ktul.com/resources/media/a2f98f6e-ed54-40a9-959e-ad140da53d0e-large16x9_JoeExotic.JPG?1585881383267"
+          alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Chicago Crime Data - Jan 1 - Apr 10</h2>
+            <p>(2018 - 2020)</p>
+          </div>
+        </div>
+        <!-- Table data -->
+        <div class="features">
+          <div class="row">
+            <div class="col-md-2">
+              <aside class="filters">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Search</div>
+                  <div class="panel-body">
+                    <form>
+                      <div class="form-group">
+                        <ul class="list-group">
+                          <li class="filter list-group-item">
+                            <label for="date">By date</label>
+                            <input class="form-control" id="searchDate" type="text"></input>
+
+                            <label for="date">By crime/activity</label>
+                            <input class="form-control" id="searchCrime" type="text"></input>
+                          </li>
+                        </ul>
+                      </div>
+                      <button id="btnSearch" type="button" class="btn btn-default">Search</button>
+                      <button id="btnReset" type="button" class="btn">Reset</button>
+                    </form>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div class="col-md-10">
+              <div id="table-area" class="">
+                <table id="ufo-table" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="table-head">Date</th>
+                      <th class="table-head">Crime/Activity</th>
+                      <th class="table-head">Crimes Committed</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Bootstrap and js require-->
+    <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" src="/static/js/dom_zingchart.js"></script>
+    <script type="text/javascript" src="/static/js/nondom_zing.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/linechart.js"></script> -->
+    <script type="text/javascript" src="/static/js/app.js"></script>
+</body>
+
+</html>
