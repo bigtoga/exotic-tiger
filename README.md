@@ -1,4 +1,4 @@
-## Chicago_data_analysis
+## Group 4 Project: The Impact of COVID-19 and Quarantines on Chicago Crime Data 
 This project is a live data dashboard that will update visuals on a website by running API calls, cleaning the results and exporting to a database, and using a Flask app, with the click of a button on the website all of the visuals will be updated with **new** data. 
 
 ## Motivation
@@ -9,5 +9,5 @@ During our initial investigation of the data we hoped to find several different 
 
 ### Chicago Data Used: (https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2)
 
-### Find the finished result here: https://lpwestlake.github.io/Exotic_tiger/
+### Find the finished result here: TODO
  
