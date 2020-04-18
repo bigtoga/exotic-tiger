@@ -1,6 +1,6 @@
 # importing dependencies and chicago.py to use getData function
 import chicago
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -76,9 +76,17 @@ def scott():
 def getData():
     # Run the data function with error handling for failed data loading
     try:
+        print('')
+        print('')
+        print('   *** app.py /updateData route called')
+        print('   *** app.py /updateData: About to call sodapy + Socradata API')
+        print('')
         chicago.getData()
-        print('Updated data loaded successfully')
-        return render_template("index.html")
+        print('')
+        print('   *** app.py /updateData: Updated data loaded successfully')
+        # return render_template("index.html")
+        print('   *** app.py /updateData: Data is updated - redirecting back to home page')
+        return redirect("/")
 
     except:
         print("Data updating failed")
